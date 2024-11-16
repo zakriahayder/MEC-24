@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}Example Page{% endblock %}
+
+{% block header %}Pedestrian Data{% endblock %}
+
+{% block content %}
+<canvas id="myChart"></canvas>
+<script>
+    const ped = {{ ped|tojson }};
+    const labels = Object.keys(ped);
+    const data = Object.values(ped);
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Pedestrian Count',
+                data: data,
+                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                },
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}
