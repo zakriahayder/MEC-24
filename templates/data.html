@@ -1,11 +1,8 @@
 {% extends "layout.html" %}
 
-{% block title %}Example Page{% endblock %}
-
-{% block header %}Pedestrian Data{% endblock %}
+{% block header %}Mean Hourly Pedesterian flow{% endblock %}
 
 {% block content %}
-<h4>Pedestrian traffic does not warrant dedicated traffic light</h4>
 <canvas id="myChart"></canvas>
 <script>
     const ped = {{ ped|tojson }};
